@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery :except => [:create_raw]
 
   # GET /images
   # GET /images.json
@@ -33,6 +34,22 @@ class ImagesController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @image.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def create_raw
+    label = params['label']
+    image = params['image']
+    @image = Image.new(label: label, image: image)
+
+    respond_to do |format|
+      if @image.save
+        format.html { redirect_to @image, notice: 'Image was successfully created.' }
+        format.json { render json: @image }
+      else
+        format.html { render :new }
+        format.json { render json: {} }
       end
     end
   end
