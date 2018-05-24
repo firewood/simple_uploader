@@ -1,24 +1,19 @@
-# README
+# Simple image host
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## What is this?
 
-Things you may want to cover:
+- Image server for https://github.com/firewood/simple_classifier
+- Images are stored into public/images/
 
-* Ruby version
+## Prerequisites
 
-* System dependencies
+- Ruby 2.x
+- ImageMagick is installed
 
-* Configuration
+## Install & Run
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+$ bundle install
+$ rake db:migrate
+$ rails s
+```
